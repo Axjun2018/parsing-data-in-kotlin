@@ -73,8 +73,15 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize()
                     ) {
                         // Display menu items
+                        // initially set state as an emptyList
+                        // by: assign state value to items, no need .value
+                        // = : assign state, need .value to convert
                         val items by menuItemsLiveData.observeAsState(emptyList())
+                        // display
                         MenuItems(items)
+//                        val items = menuItemsLiveData.observeAsState(emptyList())
+//                        // display
+//                        MenuItems(items.value)
                     }
                 }
             }
@@ -84,7 +91,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MenuItems(
-    items: List<String> = emptyList(),
+    items: List<String> = emptyList(), // set default value as an emptyList()
 ) {
     Row(
         modifier = Modifier
